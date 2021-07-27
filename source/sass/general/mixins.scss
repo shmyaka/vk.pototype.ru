@@ -1,0 +1,209 @@
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+@mixin reset-button {
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin visually-hidden {
+
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  border: 0;
+
+  clip: rect(0 0 0 0);
+}
+
+@mixin placeholder($color: var(--dark)) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  &:-moz-placeholder {
+    color: $color;
+  }
+
+  &::placeholder {
+    color: $color;
+
+    opacity: 1;
+  }
+}
+
+@mixin hover {
+  &:hover,
+  &:focus {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  @media (max-width: 767px) {
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin triangle($direction, $height, $color, $width-left: $height / 2, $width-right: $width-left) {
+  @if $direction == top {
+    width: 0;
+    height: 0;
+    border-bottom: $height solid $color;
+    border-left: $width-left solid transparent;
+    border-right: $width-right solid transparent;
+    border-top: none;
+  }
+
+  @if $direction == right {
+    width: 0;
+    height: 0;
+    border-left: $height solid $color;
+    border-top: $width-left solid transparent;
+    border-bottom: $width-right solid transparent;
+    border-right: none;
+  }
+
+  @if $direction == bottom {
+    width: 0;
+    height: 0;
+    border-top: $height solid $color;
+    border-right: $width-left solid transparent;
+    border-left: $width-right solid transparent;
+    border-bottom: none;
+  }
+
+  @if $direction == left {
+    width: 0;
+    height: 0;
+    border-right: $height solid $color;
+    border-bottom: $width-left solid transparent;
+    border-top: $width-right solid transparent;
+    border-left: none;
+  }
+}
+
+@mixin scrollbar($width:3px, $radius:6px, $color:$scroll-bar-color) {
+  &::-webkit-scrollbar-track {
+    width: $width;
+
+    background: transparent;
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar {
+    width: $width;
+
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: $width;
+
+    background: $color;
+    border-radius: $radius;
+  }
+}
+
+@mixin text-shadow($color, $width) {
+  text-shadow: $color $width 0, $color $width $width, $color 0 $width, $color -#{$width} $width, $color -#{$width} 0, $color -#{$width} -#{$width}, $color 0 -#{$width}, $color $width -#{$width};
+}
+
+@mixin shielde-grid-classes($prefix, $start: 9, $end: 18, $step: 5) {
+  $hour: $start;
+  $endHour: $end;
+  $column: 1;
+
+  @for $x from 0 through ($endHour - $hour) {
+    $minutes: 0;
+
+    @while $minutes < 60 {
+      $minutesClass: $minutes;
+      $hoursClass: $hour;
+
+      @if ($minutes < 10) {
+        $minutesClass: 0#{$minutes};
+      }
+
+      @if ($hour < 10) {
+        $hoursClass: 0#{$hour};
+      }
+
+      .#{$prefix}-#{$hoursClass}-#{$minutesClass} {
+        grid-column-#{$prefix}: $column;
+      }
+
+      $minutes: $minutes + 5;
+      $column: $column + 1;
+    }
+
+    $hour: $hour + 1;
+  }
+}
+
+@mixin shielde--ie-grid-classes($prefix, $start: 9, $end: 18, $step: 5) {
+  $hour: $start;
+  $endHour: $end;
+  $column: 1;
+
+  @for $x from 0 through ($endHour - $hour) {
+    $minutes: 0;
+
+    @while $minutes < 60 {
+      $minutesClass: $minutes;
+      $hoursClass: $hour;
+
+      @if ($minutes < 10) {
+        $minutesClass: 0#{$minutes};
+      }
+
+      @if ($hour < 10) {
+        $hoursClass: 0#{$hour};
+      }
+
+      .#{$prefix}-#{$hoursClass}-#{$minutesClass} {
+        @if ($prefix == start) {
+          left: (($hour - $start) * (60 / $step) + ($minutes / $step)) * 30px;
+        }
+
+        @if ($prefix == end) {
+          right: ((($end - $start + 1) * (60 / $step)) - (($hour - $start) * (60 / $step) + ($minutes / $step))) * 30px;
+        }
+      }
+
+      $minutes: $minutes + 5;
+      $column: $column + 1;
+    }
+
+    $hour: $hour + 1;
+  }
+}

@@ -1,0 +1,39 @@
+.stat-item {
+  display: grid;
+  min-width: $scroll-media-width;
+  min-height: 50px;
+
+  column-gap: 15px;
+  padding: 10px;
+  justify-items: center;
+
+  border-bottom: 1px solid var(--border-color);
+
+  grid-template-columns: 50px repeat(6, 1fr);
+}
+
+.stat-item__name {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  justify-self: start;
+  grid-column: span 2;
+}
+
+.stat-item__growth {
+  color: var(--green);
+}
+
+.stat-item__growth-percent {
+  font-size: 0.75em;
+}
+
+.stat-item__coverage {
+  display: flex;
+  align-items: center;
+}
+
+.stat-item__visitors {
+  display: flex;
+  align-items: center;
+}

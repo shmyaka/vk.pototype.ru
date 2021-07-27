@@ -1,0 +1,11 @@
+.stat-list {
+  @include reset-list;
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+
+  @media (max-width: $scroll-media-width) {
+    overflow: scroll;
+  }
+}

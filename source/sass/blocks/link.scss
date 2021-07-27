@@ -1,0 +1,13 @@
+.link {
+  color: var(--dark-blue);
+  transition: color 0.3s ease, opacity 0.15s ease;
+
+  &:hover,
+  &:focus {
+    color: var(--blue);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}

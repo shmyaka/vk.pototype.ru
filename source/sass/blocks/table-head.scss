@@ -1,0 +1,29 @@
+.table-head {
+  width: 100%;
+  max-width: 1200px;
+
+  font-weight: 700;
+
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+
+  @media (max-width: $scroll-media-width) {
+    overflow: scroll;
+  }
+}
+
+.table-head__content {
+  display: grid;
+  min-width: $scroll-media-width;
+  padding: 10px 0;
+
+  column-gap: 15px;
+
+  grid-template-columns: 50px repeat(6, 1fr);
+  justify-items: center;
+}
+
+.table-head__name {
+  grid-column: 2 / span 2;
+  justify-self: start;
+}
