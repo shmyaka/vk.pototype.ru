@@ -1,23 +1,32 @@
 .stat-item {
   display: grid;
+  align-items: center;
   min-width: $scroll-media-width;
   min-height: 50px;
+  padding: 10px;
 
   column-gap: 15px;
-  padding: 10px;
-  justify-items: center;
 
   border-bottom: 1px solid var(--border-color);
 
   grid-template-columns: 50px repeat(6, 1fr);
+  justify-items: center;
+}
+
+.stat-item__image-inner {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
 }
 
 .stat-item__name {
   display: flex;
   align-items: center;
+
   font-weight: 600;
-  justify-self: start;
+
   grid-column: span 2;
+  justify-self: start;
 }
 
 .stat-item__growth {
@@ -31,9 +40,53 @@
 .stat-item__coverage {
   display: flex;
   align-items: center;
+
+  &--lock {
+    position: relative;
+
+    pointer-events: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: 16px;
+      height: 16px;
+
+      background-image: url("../img/svg/lock.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 15px;
+      transform: translate(-50%, -50%);
+    }
+  }
 }
 
 .stat-item__visitors {
   display: flex;
   align-items: center;
+
+  &--lock {
+    position: relative;
+
+    pointer-events: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: 16px;
+      height: 16px;
+
+      background-image: url("../img/svg/lock.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 15px;
+      transform: translate(-50%, -50%);
+    }
+  }
 }

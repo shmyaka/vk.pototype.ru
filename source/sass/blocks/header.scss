@@ -1,19 +1,24 @@
 .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
   min-height: 50px;
+  margin-bottom: 25px;
   padding: 10px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+
+  background-color: rgba($color: #ffffff, $alpha: 0.7);
 }
 
 .header_user {
   margin: 0;
+
   color: var(--orange);
 }
 
 .header_out-link {
-  margin-left: 25px;
   display: block;
+  margin-left: 25px;
+
   text-decoration: underline;
 }

@@ -27,6 +27,7 @@ gulp.task(`copy`, function() {
     `source/fonts/**/*.{woff,woff2}`,
     `source/img/**`,
     `source/**/*.html`,
+    `source/**/*.php`
   ], {
     base: `source`
   })
@@ -107,6 +108,7 @@ gulp.task(`serve`, () => {
 
   gulp.watch(`source/sass/**/*.{scss,sass}`, gulp.series(`style`));
   gulp.watch(`source/img/**/*`, gulp.series(`copy`)).on(`change`, server.reload);
+  gulp.watch(`source/**/*.php`, gulp.series(`copy`)).on(`change`, server.reload);
   gulp.watch(`source/*.html`, gulp.series(`copyHtml`)).on(`change`, server.reload);
   gulp.watch(`source/js/**/*.js`, gulp.series(`scripts`)).on(`change`, server.reload);
 });

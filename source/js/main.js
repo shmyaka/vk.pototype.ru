@@ -1,17 +1,23 @@
 import '@babel/polyfill';
+import onButtonClick from './_get-items';
+import FormatDate from './_set_date';
 
-const data = new FormData();
-data.append('rangeMax', 500);
+const button = document.querySelector(`.form_submit`);
+const startInput = document.getElementById(`start_period`);
+const stopInput = document.getElementById(`stop_period`);
 
-const self = window.location.href;
-const url = self + '/post.php';
+window.addEventListener(`load`, () => {
+  if (button) {
+    button.addEventListener(`click`, onButtonClick);
+  }
 
-fetch(url, {
-  method: `POST`,
-  body: data
-}).then((response) => {
-  return response.json();
-})
-.then((data) => {
-  console.log(data);
+  if (startInput && stopInput) {
+    const formatDateInstance = new FormatDate();
+
+    console.log(formatDateInstance.getСurrentMonday);
+
+    stopInput.value = formatDateInstance.getСurrentMonday;
+    startInput.value = formatDateInstance.getLastMonday;
+  }
 });
+
