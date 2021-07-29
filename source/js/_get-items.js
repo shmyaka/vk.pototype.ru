@@ -1,3 +1,6 @@
+export const startInput = document.getElementById(`start_period`);
+export const stopInput = document.getElementById(`stop_period`);
+
 const statList = document.querySelector(`.stat-list`);
 const area = document.querySelector(`.form__area`);
 
@@ -7,7 +10,7 @@ const area = document.querySelector(`.form__area`);
  *
  * @param {Event} e
  */
-const onButtonClick = (e) => {
+export const onFormSubmit = (e) => {
   e.preventDefault();
 
   if (!statList) {
@@ -26,6 +29,8 @@ const onButtonClick = (e) => {
   for (const x of groupIds) {
     data.append('id[]', x);
   }
+  data.append('start_date', startInput.value);
+  data.append('stop_date', stopInput.value);
 
   fetch(url, {
     method: `POST`,
@@ -37,4 +42,4 @@ const onButtonClick = (e) => {
   });
 };
 
-export default onButtonClick;
+export default onFormSubmit;

@@ -17,7 +17,11 @@
     <?= $item['visitors'] ? number_format($item['visitors'], 0, '', ' ') : '' ?>
   </a>
   <p class="stat-item__growth">
-    <span class="stat-item__growth-abs">20568</span>
-    <span class="stat-item__growth-percent">4.72%</span>
+    <span class="stat-item__growth-abs">
+      <?= number_format($item['growth-abs'], 0, '', ' ') ?>
+    </span>
+    <span class="stat-item__growth-percent">
+      <?= number_format($item['growth-percent'], 2, '.', '') . "%" ?>
+    </span>
   </p>
 </li>

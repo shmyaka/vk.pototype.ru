@@ -17,6 +17,15 @@
 }
 
 @font-face {
+  font-weight: 400;
+  font-family: "Open Sans";
+  font-style: italic;
+
+  font-display: swap;
+  src: url("../fonts/OpenSans-Italic.woff") format("woff");
+}
+
+@font-face {
   font-weight: 600;
   font-family: "Open Sans";
   font-style: normal;

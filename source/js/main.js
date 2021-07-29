@@ -1,23 +1,22 @@
 import '@babel/polyfill';
-import onButtonClick from './_get-items';
+import onFormSubmit, {startInput, stopInput} from './_get-items';
 import FormatDate from './_set_date';
 
-const button = document.querySelector(`.form_submit`);
-const startInput = document.getElementById(`start_period`);
-const stopInput = document.getElementById(`stop_period`);
+const form = document.querySelector(`.add-form`);
 
 window.addEventListener(`load`, () => {
-  if (button) {
-    button.addEventListener(`click`, onButtonClick);
+  if (form) {
+    form.addEventListener(`submit`, onFormSubmit);
   }
 
   if (startInput && stopInput) {
     const formatDateInstance = new FormatDate();
 
-    console.log(formatDateInstance.getСurrentMonday);
+    startInput.value = formatDateInstance.getСurrentMonday;
+    stopInput.value = formatDateInstance.getLastMonday;
 
-    stopInput.value = formatDateInstance.getСurrentMonday;
-    startInput.value = formatDateInstance.getLastMonday;
+    startInput.addEventListener(`input`, formatDateInstance.leadToMonday);
+    stopInput.addEventListener(`input`, formatDateInstance.leadToMonday);
   }
 });
 

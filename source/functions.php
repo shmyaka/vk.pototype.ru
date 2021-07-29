@@ -13,20 +13,47 @@ function getAllProjects($link, int $user_id): array
     return get_db_result($link, $sql_projects, [$user_id]);
 }
 
-function getStats($link, array $options): array
+
+function getStats($link, array $ids, string $start, string $stop): array
 {
-  $sql = "SELECT g.id, g.name, photo_50, members_count as members, date_from, reach, visitors FROM (SELECT * FROM `groups`.`groups` WHERE id IN ("
-  . implode(",", $options) . ")) as g"
-  . " LEFT JOIN "
-  . "(SELECT group_id, date_from, reach, visitors FROM stat.statistics WHERE group_id IN ("
-  . implode(",", $options) . ") AND date_from = (SELECT MAX(date_from) FROM stat.statistics WHERE group_id IN ("
-  . implode(",", $options) . "))) as s"
-  . " on g.id = s.group_id;";
-  // $sql = "SELECT g.id, g.name, photo_50, members_count as members, date_from, reach, visitors FROM (SELECT * FROM `groups`.`groups` WHERE id IN (" . implode(",", $options) . ")) as g
-  // LEFT JOIN
-  // (SELECT group_id, date_from, reach, visitors FROM stat.statistics where group_id in (" . implode(",", $options) . ") and date_from = (select max(date_from) from stat.statistics where group_id in (" . implode(",", $options) . "))) as s
-  // on g.id = s.group_id;";
+  // $sql = "SELECT g.id, g.name, photo_50, members_count as members, date_from, reach, visitors FROM (SELECT * FROM `groups`.`groups` WHERE id IN ("
+  // . implode(",", $ids) . ")) as g"
+  // . " LEFT JOIN "
+  // . "(SELECT group_id, date_from, reach, visitors FROM stat.statistics WHERE group_id IN ("
+  // . implode(",", $ids) . ") AND date_from = (SELECT MAX(date_from) FROM stat.statistics WHERE group_id IN ("
+  // . implode(",", $ids) . "))) as s"
+  // . " on g.id = s.group_id;";
+  $sql = "SELECT g.id, g.name, g.photo_50, g.members_count as members, s.reach, s.visitors, s_subscribed, s_unsubscribed FROM (SELECT * FROM `groups`.`groups` WHERE id IN (" . implode(",", $ids) . ")) AS g
+    LEFT JOIN
+    (SELECT group_id, date_from, reach, visitors FROM stat.statistics WHERE group_id IN (" . implode(",", $ids) . ") AND date_from = '" . $stop . "') AS s
+    ON g.id = s.group_id
+    LEFT JOIN
+    (SELECT group_id, sum(subscribed) AS s_subscribed, SUM(unsubscribed) AS s_unsubscribed FROM stat.statistics WHERE group_id IN (" . implode(",", $ids) . ") AND date_from BETWEEN '" . $start . "' AND '" . $stop . "' GROUP BY group_id) AS pop
+    ON pop.group_id = g.id;";
+
   return get_db_result($link, $sql);
+}
+
+function convertStats(array $stats): array
+{
+  foreach ($stats as &$item) {
+    $subscribed = isset($item['s_subscribed']) ? $item['s_subscribed'] : 0;
+    $unsubscribed = isset($item['s_unsubscribed']) ? $item['s_unsubscribed'] : 0;
+    $percent = 100 * ($subscribed - $unsubscribed) / $item['members'];
+    $item['growth-abs'] = $subscribed - $unsubscribed;
+    $item['growth-percent'] = $percent;
+  }
+
+  return $stats;
+}
+
+function getPasswordFromDB($link, string $login): array
+{
+  $sql = "SELECT id, password FROM `users`.`users` WHERE login = ?";
+
+  $data = [$login];
+
+  return get_db_result($link, $sql, $data);
 }
 
 /**

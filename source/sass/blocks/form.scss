@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
   padding: 25px;
 
   background-color: var(--light);
+  border: 2px solid var(--border-color);
   border-radius: 20px;
-  margin-bottom: 20px;
 }
 
 .form__legend {
@@ -14,6 +15,14 @@
 
   font-weight: 600;
   font-size: 18px;
+}
+
+.form__label {
+  align-self: flex-start;
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-style: italic;
 }
 
 .form__area {
@@ -34,6 +43,7 @@
   }
 }
 
+.form__input,
 .form__date {
   width: 100%;
   margin-bottom: 15px;
@@ -51,8 +61,9 @@
   }
 }
 
-.form_submit {
+.form__submit {
   min-width: 200px;
+  margin-top: 25px;
   padding: 16px;
 
   font-weight: 600;
