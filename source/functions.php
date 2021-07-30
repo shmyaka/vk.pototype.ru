@@ -56,6 +56,20 @@ function getPasswordFromDB($link, string $login): array
   return get_db_result($link, $sql, $data);
 }
 
+function getPortionIds($link, int $currentCount): array
+{
+  $sql = "SELECT id FROM `groups`.`active_ids` LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+
+  $portionIds = get_db_result($link, $sql);
+
+  foreach ($portionIds as &$item) {
+    $item = $item["id"];
+  }
+
+  return $portionIds;
+}
+
+
 /**
  * Возвращает задачи для заданных условий
  * @param $link mysqli Ресурс соединения

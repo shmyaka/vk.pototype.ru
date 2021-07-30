@@ -42,4 +42,33 @@ export const onFormSubmit = (e) => {
   });
 };
 
-export default onFormSubmit;
+export default class GetItems {
+  constructor() {
+    this._list = statList || null;
+  }
+
+  getPortionData(currentCount = null) {
+    if (!currentCount) {
+      currentCount = Number(this._list.dataset.currentCount) + 1;
+    }
+
+    const self = window.location.href;
+    const url = self + '/post.php';
+    const data = new FormData();
+
+    data.append('currentCount', currentCount);
+    data.append('start_date', '2021-06-14');
+    data.append('stop_date', '2021-06-21');
+
+    fetch(url, {
+      method: `POST`,
+      body: data
+    }).then((responce) => {
+      return responce.text();
+    }).then((data) => {
+      this._list.innerHTML = data;
+      this._list.dataset.currentCount = currentCount;
+    });
+  }
+}
+

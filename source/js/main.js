@@ -1,12 +1,15 @@
 import '@babel/polyfill';
-import onFormSubmit, {startInput, stopInput} from './_get-items';
+import GetItems, {onFormSubmit, startInput, stopInput} from './_get-items';
 import FormatDate from './_set_date';
 
 const form = document.querySelector(`.add-form`);
 
 window.addEventListener(`load`, () => {
   if (form) {
-    form.addEventListener(`submit`, onFormSubmit);
+    // form.addEventListener(`submit`, onFormSubmit);
+    const getItemsInstance = new GetItems();
+
+    getItemsInstance.getPortionData();
   }
 
   if (startInput && stopInput) {
