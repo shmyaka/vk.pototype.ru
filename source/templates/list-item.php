@@ -1,6 +1,6 @@
 <li class="stat-list__item stat-item">
   <div class="stat-item__image-inner">
-    <img class="stat-item__image" src=<?= $item['photo_50'] ?> alt="">
+    <img class="stat-item__image" src=<?= $item['photo_50'] ?> alt="" loading="lazy">
   </div>
   <a class="stat-item__name link" <?= 'href="https://vk.com/club' . $item['id'] . '"' ?> target="_blank">
     <?= $item['name'] ?>

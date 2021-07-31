@@ -16,20 +16,25 @@
 
 
   <div class="container">
-    <form class="form add-form" action="#" method="POST">
-      <legend class="form__legend">Введите данные для отображения</legend>
+    <div class="add-form-container add-form-container--close">
+      <button class="add-form-container__button button" type="button" name="add-from-rollup">Парсить</button>
+      <div class="add-form-container__wrap">
+        <form class="form add-form" action="#" method="POST">
+          <legend class="form__legend">Введите данные для парсинга</legend>
 
-      <label class="form__label" for="ids_arr">ID`s</label>
-      <textarea class="form__area" name="ids_arr" id="ids_arr" cols="30" rows="10" placeholder="Введите id групп через запятую"></textarea>
+          <label class="form__label" for="ids_arr">ID`s</label>
+          <textarea class="form__area" name="ids_arr" id="ids_arr" cols="30" rows="10" placeholder="Введите id групп через запятую"></textarea>
 
-      <label class="form__label" for="start_period">Начало периода</label>
-      <input class="form__date" type="date" name="start_period" id="start_period">
+          <label class="form__label" for="start_period">Начало периода</label>
+          <input class="form__date" type="date" name="start_period" id="start_period">
 
-      <label class="form__label" for="stop_period">Окончание периода</label>
-      <input class="form__date" type="date" name="stop_period" id="stop_period">
+          <label class="form__label" for="stop_period">Окончание периода</label>
+          <input class="form__date" type="date" name="stop_period" id="stop_period">
 
-      <button class="form__submit add-form__submit" type="submit">submit</button>
-    </form>
+          <button class="form__submit add-form__submit button" type="submit">submit</button>
+        </form>
+      </div>
+    </div>
     <div class="table-head">
       <div class="table-head__content">
         <p class="table-head__name">Название</p>
@@ -38,6 +43,29 @@
         <p class="table-head__visitors">Посетители</p>
         <p class="table-head__growth">Прирост</p>
       </div>
+      <div class="search">
+        <form class="search__form" action="#">
+          <label aria-label="поиск по названию группы" for="search">
+            <input class="search__input" type="search" name="search" id="search" data-value='' placeholder="поиск">
+          </label>
+        </form>
+      </div>
+    </div>
+    <div class="pagination">
+      <ul class="pagination__list">
+        <li class="pagination__item">
+          <a class="pagination__link pagination__link--active" href="" data-count="1">1</a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__link" href="" data-count="2">2</a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__link" href="" data-count="3">3</a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__link pagination__end-link" href="" data-count="end">>></a>
+        </li>
+      </ul>
     </div>
     <ul class="stat-list" data-current-count="0">
 

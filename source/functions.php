@@ -56,9 +56,13 @@ function getPasswordFromDB($link, string $login): array
   return get_db_result($link, $sql, $data);
 }
 
-function getPortionIds($link, int $currentCount): array
+function getPortionIds($link, int $currentCount, string $search = null): array
 {
-  $sql = "SELECT id FROM `groups`.`active_ids` LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+  if ($search) {
+    $sql = "SELECT id FROM `groups`.`groups` WHERE MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE) LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+  } else {
+    $sql = "SELECT id FROM `groups`.`active_ids` LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+  }
 
   $portionIds = get_db_result($link, $sql);
 
@@ -68,6 +72,22 @@ function getPortionIds($link, int $currentCount): array
 
   return $portionIds;
 }
+
+function getCountOfIds($link)
+{
+  $sql = "SELECT COUNT(id) as count FROM `groups`.`active_ids`";
+
+  return get_db_result($link, $sql)[0]['count'];
+}
+
+function getMaxCountWithSearch($link, string $search)
+{
+  $sql = "SELECT COUNT(id) as count FROM `groups`.`groups` WHERE MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE)";
+
+  return get_db_result($link, $sql)[0]['count'];
+}
+
+
 
 
 /**

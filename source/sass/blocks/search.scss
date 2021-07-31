@@ -1,0 +1,24 @@
+.search {
+  position: absolute;
+  bottom: -6px;
+  left: 10px;
+
+  width: 40%;
+
+  transform: translateY(100%);
+  z-index: 2;
+}
+
+.search__input {
+  border: none;
+  box-shadow: 0 0 0 1px var(--border-color);
+  width: 100%;
+  padding: 4px 10px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+
+  &:focus,
+  &:active {
+    box-shadow: 0 0 0 2px var(--border-color);
+  }
+}

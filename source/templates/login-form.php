@@ -7,5 +7,5 @@
   <label class="form__label" for="password">Пароль</label>
   <input class="form__input" type="password" name="password" id="password">
 
-  <button class="form__submit login-form__submit" type="submit">Войти</button>
+  <button class="form__submit login-form__submit button" type="submit">Войти</button>
 </form>
