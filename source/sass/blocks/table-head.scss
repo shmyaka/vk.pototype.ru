@@ -4,25 +4,33 @@
   position: relative;
 
   font-weight: 700;
+  display: grid;
+  grid-template-columns: 1fr var(--filter_width);
 
   background-color: var(--head-bg-color);
   border: 1px solid var(--border-color);
   border-bottom: none;
-
-  @media (max-width: $scroll-media-width) {
-    overflow: scroll;
-  }
 }
+
+// .table-head__wrap {
+//   @media (max-width: $scroll-media-width) {
+//     overflow: scroll;
+//   }
+// }
 
 .table-head__content {
   display: grid;
-  min-width: $scroll-media-width;
+  min-width: calc(var(--scroll-media-width) - var(--filter_width));
   padding: 10px;
 
   column-gap: 15px;
 
   grid-template-columns: 50px repeat(6, 1fr);
   justify-items: center;
+
+  @media (max-width: $scroll-media-width) {
+    min-width: auto;
+  }
 }
 
 .table-head__name {

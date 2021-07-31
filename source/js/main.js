@@ -11,6 +11,9 @@ const addFormContainer = document.querySelector(`.add-form-container`);
 const buttonRollup = document.querySelector(`.add-form-container__button`);
 const paginationList = document.querySelector(`.pagination__list`);
 const searchInput = document.querySelector(`.search__input`);
+const searchForm = document.querySelector(`.search__form`);
+const filter = document.querySelector(`.filter`);
+const filterToggleButton = document.querySelector(`.filter__toggle-button`);
 
 window.addEventListener(`load`, () => {
   if (form && searchInput) {
@@ -38,6 +41,20 @@ window.addEventListener(`load`, () => {
 
     startInput.addEventListener(`input`, formatDateInstance.leadToMonday);
     stopInput.addEventListener(`input`, formatDateInstance.leadToMonday);
+  }
+
+  if (searchForm) {
+    searchForm.addEventListener(`submit`, (e) => {
+      e.preventDefault();
+    });
+  }
+
+  if (filter && filterToggleButton) {
+    filterToggleButton.addEventListener(`click`, (e) => {
+      e.preventDefault();
+
+      filter.classList.toggle(`filter--open`);
+    });
   }
 });
 

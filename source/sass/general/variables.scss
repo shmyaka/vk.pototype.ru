@@ -6,6 +6,8 @@ $scroll-media-width: 1000px;
 
 
 :root {
+  --scroll-media-width: 1000px;
+  --filter_width: 300px;
   --font: "Open Sans", sans-serif;
   --gold: #ffd139;
   --dark: #161616;
@@ -27,4 +29,8 @@ $scroll-media-width: 1000px;
   --orange: #ff7337;
   --violet: #bf56ff;
   --pampas: #f4f0ec;
+
+  @media (max-width: $scroll-media-width) {
+    --filter_width: 50px;
+  }
 }

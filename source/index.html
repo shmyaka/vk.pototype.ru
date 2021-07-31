@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, width=750">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="css/style-min.css">
@@ -12,8 +12,6 @@
     <p class="header__user">Observer</p>
     <a class="header__out-link link" href="/pop/exit.php">выйти</a>
   </header>
-
-
 
   <div class="container">
     <div class="add-form-container add-form-container--close">
@@ -44,7 +42,7 @@
         <p class="table-head__growth">Прирост</p>
       </div>
       <div class="search">
-        <form class="search__form" action="#">
+        <form class="search__form" action="">
           <label aria-label="поиск по названию группы" for="search">
             <input class="search__input" type="search" name="search" id="search" data-value='' placeholder="поиск">
           </label>
@@ -67,9 +65,27 @@
         </li>
       </ul>
     </div>
-    <ul class="stat-list" data-current-count="0">
-
-    </ul>
+    <div class="content">
+      <ul class="stat-list" data-current-count="0">
+        <li class="stat-list__item stat-item">
+          <div class="stat-item__image-inner">
+            <img class="stat-item__image" src="https://via.placeholder.com/50" alt="">
+          </div>
+          <a class="stat-item__name link" href="https://vk.com/club1"  target="_blank" >Название группы</a>
+          <p class="stat-item__members-count">546874</p>
+          <a class="stat-item__coverage link" href="#" target="_blank" >2678</a>
+          <a class="stat-item__visitors link" href="#" target="_blank" >15487</a>
+          <p class="stat-item__growth">
+            <span class="stat-item__growth-abs">20568</span>
+            <span class="stat-item__growth-percent">4.72%</span>
+          </p>
+        </li>
+      </ul>
+      <div class="filter">
+        <form class="filter__form" action=""></form>
+        <button class="filter__toggle-button" type="button" name="filter-toggle-button">></button>
+      </div>
+    </div>
   </div>
 
   <template id="stat-item">

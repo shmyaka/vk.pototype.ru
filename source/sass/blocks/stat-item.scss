@@ -1,7 +1,7 @@
 .stat-item {
   display: grid;
   align-items: center;
-  min-width: $scroll-media-width;
+  min-width: calc(var(--scroll-media-width) - var(--filter_width));
   min-height: 50px;
   padding: 10px;
 
@@ -11,6 +11,10 @@
 
   grid-template-columns: 50px repeat(6, 1fr);
   justify-items: center;
+
+  @media (max-width: $scroll-media-width) {
+    min-width: auto;
+  }
 }
 
 .stat-item__image-inner {

@@ -1,0 +1,8 @@
+.content {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  position: relative;
+  margin-bottom: 40px;
+  grid-template-columns: 1fr var(--filter_width);
+}
