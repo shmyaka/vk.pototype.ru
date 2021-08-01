@@ -22,32 +22,32 @@ const rangeLine = document.querySelector(`.filter__range-line`);
 const MAX_MEMBERS = 11597820;
 
 window.addEventListener(`load`, () => {
-  // if (form && searchInput) {
-  //   // form.addEventListener(`submit`, onFormSubmit);
-  //   const getItemsInstance = new GetItems(paginationList, statList, searchInput);
+  if (form && searchInput) {
+    // form.addEventListener(`submit`, onFormSubmit);
+    const getItemsInstance = new GetItems(paginationList, statList, searchInput);
 
-  //   getItemsInstance.getPortionData();
+    getItemsInstance.getPortionData();
 
-  //   if (paginationList) {
-  //     new Pagination(paginationList, getItemsInstance).init();
-  //   }
+    if (paginationList) {
+      new Pagination(paginationList, getItemsInstance).init();
+    }
 
-  //   new Search(searchInput, getItemsInstance, statList).init();
-  // }
+    new Search(searchInput, getItemsInstance, statList).init();
+  }
 
-  // if (addFormContainer && buttonRollup) {
-  //   new AddFormRollup(addFormContainer, buttonRollup).init();
-  // }
+  if (addFormContainer && buttonRollup) {
+    new AddFormRollup(addFormContainer, buttonRollup).init();
+  }
 
-  // if (startInput && stopInput) {
-  //   const formatDateInstance = new FormatDate();
+  if (startInput && stopInput) {
+    const formatDateInstance = new FormatDate();
 
-  //   startInput.value = formatDateInstance.getСurrentMonday;
-  //   stopInput.value = formatDateInstance.getLastMonday;
+    startInput.value = formatDateInstance.getСurrentMonday;
+    stopInput.value = formatDateInstance.getLastMonday;
 
-  //   startInput.addEventListener(`input`, formatDateInstance.leadToMonday);
-  //   stopInput.addEventListener(`input`, formatDateInstance.leadToMonday);
-  // }
+    startInput.addEventListener(`input`, formatDateInstance.leadToMonday);
+    stopInput.addEventListener(`input`, formatDateInstance.leadToMonday);
+  }
 
   if (searchForm) {
     searchForm.addEventListener(`submit`, (e) => {
