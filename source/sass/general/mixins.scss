@@ -31,6 +31,30 @@
   clip: rect(0 0 0 0);
 }
 
+@mixin inpTypeRange_Indicator {
+  position: relative;
+  z-index: 1;
+
+  width: 10px;
+  height: 10px;
+
+  background-color: var(--tumbs-color);
+  border: 100%;
+  border-radius: 100%;
+  box-shadow: 0.5px 0.5px 2px var(--pink);
+  cursor: pointer;
+  @content;
+}
+
+@mixin inpTypeRange_BgLine {
+  width: 100%;
+  height: 0;
+
+  background: transparent;
+  cursor: pointer;
+  @content;
+}
+
 @mixin placeholder($color: var(--dark)) {
   &::-webkit-input-placeholder {
     color: $color;
@@ -136,74 +160,4 @@
 
 @mixin text-shadow($color, $width) {
   text-shadow: $color $width 0, $color $width $width, $color 0 $width, $color -#{$width} $width, $color -#{$width} 0, $color -#{$width} -#{$width}, $color 0 -#{$width}, $color $width -#{$width};
-}
-
-@mixin shielde-grid-classes($prefix, $start: 9, $end: 18, $step: 5) {
-  $hour: $start;
-  $endHour: $end;
-  $column: 1;
-
-  @for $x from 0 through ($endHour - $hour) {
-    $minutes: 0;
-
-    @while $minutes < 60 {
-      $minutesClass: $minutes;
-      $hoursClass: $hour;
-
-      @if ($minutes < 10) {
-        $minutesClass: 0#{$minutes};
-      }
-
-      @if ($hour < 10) {
-        $hoursClass: 0#{$hour};
-      }
-
-      .#{$prefix}-#{$hoursClass}-#{$minutesClass} {
-        grid-column-#{$prefix}: $column;
-      }
-
-      $minutes: $minutes + 5;
-      $column: $column + 1;
-    }
-
-    $hour: $hour + 1;
-  }
-}
-
-@mixin shielde--ie-grid-classes($prefix, $start: 9, $end: 18, $step: 5) {
-  $hour: $start;
-  $endHour: $end;
-  $column: 1;
-
-  @for $x from 0 through ($endHour - $hour) {
-    $minutes: 0;
-
-    @while $minutes < 60 {
-      $minutesClass: $minutes;
-      $hoursClass: $hour;
-
-      @if ($minutes < 10) {
-        $minutesClass: 0#{$minutes};
-      }
-
-      @if ($hour < 10) {
-        $hoursClass: 0#{$hour};
-      }
-
-      .#{$prefix}-#{$hoursClass}-#{$minutesClass} {
-        @if ($prefix == start) {
-          left: (($hour - $start) * (60 / $step) + ($minutes / $step)) * 30px;
-        }
-
-        @if ($prefix == end) {
-          right: ((($end - $start + 1) * (60 / $step)) - (($hour - $start) * (60 / $step) + ($minutes / $step))) * 30px;
-        }
-      }
-
-      $minutes: $minutes + 5;
-      $column: $column + 1;
-    }
-
-    $hour: $hour + 1;
-  }
 }

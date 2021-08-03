@@ -104,10 +104,6 @@ export default class GetItems {
       data.append('search', this._searchInput.dataset.value);
     }
 
-    for (const k of data.entries()) {
-      console.log(k);
-    }
-
     if (this._lock) {
       this._pendingData = {
         data: data,

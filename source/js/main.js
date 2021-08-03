@@ -21,6 +21,7 @@ const inputMax = document.getElementById(`range_max`);
 const outputMin = document.getElementById(`output_min`);
 const outputMax = document.getElementById(`output_max`);
 const rangeLine = document.querySelector(`.filter__range-line`);
+const filterResetButton = document.querySelector(`.filter__reset-button`);
 // потом посчитать отдельно
 const MAX_MEMBERS = 11597820;
 
@@ -68,10 +69,12 @@ window.addEventListener(`load`, () => {
 
       filter.classList.toggle(`filter--open`);
     });
+
+    filter.style.height = `${filterForm.offsetHeight}px`;
   }
 
   if (inputMin && inputMax && rangeLine) {
-    new Range(inputMin, inputMax, outputMin, outputMax, rangeLine, MAX_MEMBERS).init();
+    new Range(inputMin, inputMax, outputMin, outputMax, rangeLine, MAX_MEMBERS, filterResetButton).init();
   }
 });
 

@@ -85,6 +85,7 @@ if (!isset($_SESSION['user'])) {
       <div class="filter">
         <form class="filter__form" action="" >
           <fieldset class="filter__range-fieldset filter__fieldset">
+            <button class="filter__reset-button" type="button"></button>
             <label class="label" for="range_min">Подписчики:</label>
             <div class="filter__output-wrap">
               <input class="filter__output" type="number" name="output_min" id="output_min" value="1"></input>
