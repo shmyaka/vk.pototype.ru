@@ -72,7 +72,7 @@
       <!-- FILTER -->
       <div class="filter">
         <form class="filter__form" action="" >
-          <fieldset class="filter__range-fieldset">
+          <fieldset class="filter__range-fieldset filter__fieldset">
             <label class="label" for="range_min">Подписчики:</label>
             <div class="filter__output-wrap">
               <input class="filter__output" type="number" name="output_min" id="output_min" value="1"></input>
@@ -84,6 +84,32 @@
               <input class="filter__range" type="range" id="range_min" name="range_min" min="1" max="11597820" value="1">
               <input class="filter__range" type="range" id="range_max" name="range_max" min="1" max="11597820" value="11597820">
             </div>
+          </fieldset>
+          <fieldset class="filter__fieldset">
+            <label class="label" for="type-all">Тип:</label>
+            <label class="label filter__label">
+              <input type="radio" name="group_type" id="type-all" value="all" checked>
+              Все
+            </label>
+            <label class="label filter__label">
+              <input type="radio" name="group_type" id="type-page" value="page">
+              Паблики
+            </label>
+            <label class="label filter__label">
+              <input type="radio" name="group_type" id="type-group" value="group">
+              Группы
+            </label>
+          </fieldset>
+          <fieldset class="filter__fieldset">
+            <label class="label filter__label" for="period-week">Период:</label>
+            <label class="label filter__label" for="period-week">
+              <input type="radio" name="period" id="period-week" value="week" checked>
+              Неделя
+            </label>
+            <label class="label filter__label" for="period-month">
+              <input type="radio" name="period" id="period-month" value="month">
+              Месяц
+            </label>
           </fieldset>
         </form>
         <button class="filter__toggle-button" type="button" name="filter-toggle-button">></button>

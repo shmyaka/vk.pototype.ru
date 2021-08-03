@@ -133,11 +133,12 @@
   }
 }
 
-.filter__range-fieldset {
+.filter__fieldset {
   display: flex;
   flex-direction: column;
   border: none;
   max-width: 100%;
+  margin-bottom: 25px;
 }
 
 .filter__output-wrap {
@@ -180,6 +181,13 @@
   border: none;
   text-align: center;
 }
+
+.filter__label {
+  margin-bottom: 6px;
+}
+
+
+
 
 .filter__toggle-button {
   @include reset-button;

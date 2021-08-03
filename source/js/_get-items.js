@@ -97,8 +97,8 @@ export default class GetItems {
 
     // потом нужно добавить подтягивание самой свежей даты
     data.append('currentCount', currentCount);
-    data.append('start_date', '2021-06-14');
-    data.append('stop_date', '2021-06-21');
+    data.append('start_date', data.get(`period`) === `week` ? '2021-07-12' : '2021-06-21');
+    data.append('stop_date', '2021-07-19');
 
     if (this._searchInput.dataset.value) {
       data.append('search', this._searchInput.dataset.value);

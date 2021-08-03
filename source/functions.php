@@ -16,13 +16,6 @@ function getAllProjects($link, int $user_id): array
 
 function getStats($link, array $ids, string $start, string $stop): array
 {
-  // $sql = "SELECT g.id, g.name, photo_50, members_count as members, date_from, reach, visitors FROM (SELECT * FROM `groups`.`groups` WHERE id IN ("
-  // . implode(",", $ids) . ")) as g"
-  // . " LEFT JOIN "
-  // . "(SELECT group_id, date_from, reach, visitors FROM stat.statistics WHERE group_id IN ("
-  // . implode(",", $ids) . ") AND date_from = (SELECT MAX(date_from) FROM stat.statistics WHERE group_id IN ("
-  // . implode(",", $ids) . "))) as s"
-  // . " on g.id = s.group_id;";
   $sql = "SELECT g.id, g.name, g.photo_50, g.members_count as members, s.reach, s.visitors, s_subscribed, s_unsubscribed FROM (SELECT * FROM `groups`.`groups` WHERE id IN (" . implode(",", $ids) . ")) AS g
     LEFT JOIN
     (SELECT group_id, date_from, reach, visitors FROM stat.statistics WHERE group_id IN (" . implode(",", $ids) . ") AND date_from = '" . $stop . "') AS s
@@ -56,12 +49,14 @@ function getPasswordFromDB($link, string $login): array
   return get_db_result($link, $sql, $data);
 }
 
-function getPortionIds($link, int $currentCount, string $search = null, string $rangeMin, string $rangeMax): array
+function getPortionIds($link, int $currentCount, string $search = null, string $rangeMin, string $rangeMax, string $groupType): array
 {
+  $fragment = $groupType == "all" ? "" : " `type` = '" . $groupType . "' AND ";
+
   if ($search) {
-    $sql = "SELECT id FROM `groups`.`groups` WHERE MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE) LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+    $sql = "SELECT id FROM `groups`.`groups` WHERE " . $fragment . " MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE) LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
   } else {
-    $sql = "SELECT id FROM `groups`.`groups`  WHERE members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . " LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+    $sql = "SELECT id FROM `groups`.`groups` WHERE " . $fragment . " members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . " LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
   }
 
   $portionIds = get_db_result($link, $sql);
@@ -73,9 +68,11 @@ function getPortionIds($link, int $currentCount, string $search = null, string $
   return $portionIds;
 }
 
-function getCountOfIds($link, string $rangeMin, string $rangeMax): int
+function getCountOfIds($link, string $rangeMin, string $rangeMax, string $groupType): int
 {
-  $sql = "SELECT COUNT(id) as count FROM `groups`.`groups` WHERE members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . "";
+  $fragment = $groupType == "all" ? "" : " `type` = '" . $groupType . "' AND ";
+
+  $sql = "SELECT COUNT(id) as count FROM `groups`.`groups` WHERE " . $fragment . " `members_count` BETWEEN " . $rangeMin . " AND " . $rangeMax . "";
 
   return get_db_result($link, $sql)[0]['count'];
 }
