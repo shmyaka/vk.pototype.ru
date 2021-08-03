@@ -6,7 +6,7 @@ require_once 'sql-connect.php';
 session_start();
 
 if (isset($_SESSION['user'])) {
-  header("Location: /pop");
+  header("Location: /");
   exit();
 }
 

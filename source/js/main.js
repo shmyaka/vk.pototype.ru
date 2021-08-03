@@ -14,9 +14,12 @@ const paginationList = document.querySelector(`.pagination__list`);
 const searchInput = document.querySelector(`.search__input`);
 const searchForm = document.querySelector(`.search__form`);
 const filter = document.querySelector(`.filter`);
+const filterForm = document.querySelector(`.filter__form`);
 const filterToggleButton = document.querySelector(`.filter__toggle-button`);
 const inputMin = document.getElementById(`range_min`);
 const inputMax = document.getElementById(`range_max`);
+const outputMin = document.getElementById(`output_min`);
+const outputMax = document.getElementById(`output_max`);
 const rangeLine = document.querySelector(`.filter__range-line`);
 // потом посчитать отдельно
 const MAX_MEMBERS = 11597820;
@@ -24,7 +27,7 @@ const MAX_MEMBERS = 11597820;
 window.addEventListener(`load`, () => {
   if (form && searchInput) {
     // form.addEventListener(`submit`, onFormSubmit);
-    const getItemsInstance = new GetItems(paginationList, statList, searchInput);
+    const getItemsInstance = new GetItems(paginationList, statList, searchInput, filterForm);
 
     getItemsInstance.getPortionData();
 
@@ -33,6 +36,10 @@ window.addEventListener(`load`, () => {
     }
 
     new Search(searchInput, getItemsInstance, statList).init();
+
+    filterForm.addEventListener(`change`, () => {
+      getItemsInstance.getPortionData(1);
+    });
   }
 
   if (addFormContainer && buttonRollup) {
@@ -64,7 +71,7 @@ window.addEventListener(`load`, () => {
   }
 
   if (inputMin && inputMax && rangeLine) {
-    new Range(inputMin, inputMax, rangeLine, MAX_MEMBERS).init();
+    new Range(inputMin, inputMax, outputMin, outputMax, rangeLine, MAX_MEMBERS).init();
   }
 });
 

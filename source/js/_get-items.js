@@ -41,12 +41,15 @@ export const onFormSubmit = (e) => {
 };
 
 export default class GetItems {
-  constructor(pagination, statList, searchInput) {
+  constructor(pagination, statList, searchInput, filterForm) {
     this._list = statList || null;
     this._paginationList = pagination || null;
     this._searchInput = searchInput || null;
+    this._filterForm = filterForm || null;
     this._lock = false;
     this._pendingData = null;
+
+    this.getPortionData = this.getPortionData.bind(this);
   }
 
   _sendAndDraw(data, currentCount) {
@@ -90,7 +93,7 @@ export default class GetItems {
       currentCount = Number(this._list.dataset.currentCount) + 1;
     }
 
-    const data = new FormData();
+    const data = new FormData(this._filterForm);
 
     // потом нужно добавить подтягивание самой свежей даты
     data.append('currentCount', currentCount);
@@ -99,6 +102,10 @@ export default class GetItems {
 
     if (this._searchInput.dataset.value) {
       data.append('search', this._searchInput.dataset.value);
+    }
+
+    for (const k of data.entries()) {
+      console.log(k);
     }
 
     if (this._lock) {

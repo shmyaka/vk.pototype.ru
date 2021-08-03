@@ -1,4 +1,4 @@
-<form class="login-form form" action="/pop/verification.php" method="POST">
+<form class="login-form form" action="/verification.php" method="POST">
   <legend class="form__legend">Вход на сайт</legend>
 
   <label class="form__label" for="login">Логин</label>

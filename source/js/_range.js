@@ -1,7 +1,9 @@
 export default class Range {
-  constructor(inputMin, inputMax, rangeLine, maxMembers) {
+  constructor(inputMin, inputMax, outputMin, outputMax, rangeLine, maxMembers) {
     this._inputMin = inputMin;
     this._inputMax = inputMax;
+    this._outputMin = outputMin;
+    this._outputMax = outputMax;
     this._rangeLine = rangeLine;
     this._maxMembers = maxMembers;
     this._MIN = 1;
@@ -9,46 +11,77 @@ export default class Range {
 
     this._onInputMinChange = this._onInputMinChange.bind(this);
     this._onInputMaxChange = this._onInputMaxChange.bind(this);
+    this._onOutputMinChange = this._onOutputMinChange.bind(this);
+    this._onOutputMaxChange = this._onOutputMaxChange.bind(this);
   }
 
+  /**
+   * Перестраивает внутреннюю линию на двойном range-ползунке
+   * И меняем значения в output-элементах
+   */
   _rebuildRangeLine() {
     const left = this._MIN / this._maxMembers * 100;
     const right = 100 - this._MAX / this._maxMembers * 100;
 
     this._rangeLine.style.left = `${left}%`;
     this._rangeLine.style.right = `${right}%`;
+
+    this._outputMin.value = this._MIN;
+    this._outputMax.value = this._MAX;
   }
 
+
   /**
-   *
-   * @param {Event} e
+   * Обработчик события изменения output-элемента MIN
    */
-  _onInputMinChange(e) {
-    this._rebuildRangeLine();
+  _onOutputMinChange() {
+    this._inputMin.value = this._outputMin.value;
 
-    if (parseInt(e.target.value) >= this._MAX) {
-      e.target.value = this._MAX;
-      e.preventDefault();
-    }
-
-    this._MIN = parseInt(e.target.value);
+    const event = new Event(`input`);
+    this._inputMin.dispatchEvent(event);
   }
 
+
   /**
-   *
-   * @param {Event} e
+   * Обработчик события изменения output-элемента MAX
    */
-  _onInputMaxChange(e) {
-    this._rebuildRangeLine();
-    if (parseInt(e.target.value) <= this._MIN) {
-      e.target.value = this._MIN;
-      e.preventDefault();
+  _onOutputMaxChange() {
+    this._inputMax.value = this._outputMax.value;
+
+    const event = new Event(`input`);
+    this._inputMax.dispatchEvent(event);
+  }
+
+
+  /**
+   * Обработчик события изменения интпута range MIN
+   */
+  _onInputMinChange() {
+    if (parseInt(this._inputMin.value) >= this._MAX) {
+      this._inputMin.value = this._MAX;
     }
-    this._MAX = parseInt(e.target.value);
+    this._MIN = parseInt(this._inputMin.value);
+
+    this._rebuildRangeLine();
+  }
+
+
+  /**
+   * Обработчик события изменения интпута range MAX
+   */
+  _onInputMaxChange() {
+    if (parseInt(this._inputMax.value) <= this._MIN) {
+      this._inputMax.value = this._MIN;
+    }
+    this._MAX = parseInt(this._inputMax.value);
+
+    this._rebuildRangeLine();
   }
 
   init() {
     this._inputMin.addEventListener(`input`, this._onInputMinChange);
     this._inputMax.addEventListener(`input`, this._onInputMaxChange);
+    this._outputMin.addEventListener(`change`, this._onOutputMinChange);
+    this._outputMax.addEventListener(`change`, this._onOutputMaxChange);
   }
 }

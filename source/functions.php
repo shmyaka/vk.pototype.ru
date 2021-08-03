@@ -56,12 +56,12 @@ function getPasswordFromDB($link, string $login): array
   return get_db_result($link, $sql, $data);
 }
 
-function getPortionIds($link, int $currentCount, string $search = null): array
+function getPortionIds($link, int $currentCount, string $search = null, string $rangeMin, string $rangeMax): array
 {
   if ($search) {
     $sql = "SELECT id FROM `groups`.`groups` WHERE MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE) LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
   } else {
-    $sql = "SELECT id FROM `groups`.`active_ids` LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+    $sql = "SELECT id FROM `groups`.`groups`  WHERE members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . " LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
   }
 
   $portionIds = get_db_result($link, $sql);
@@ -73,9 +73,9 @@ function getPortionIds($link, int $currentCount, string $search = null): array
   return $portionIds;
 }
 
-function getCountOfIds($link)
+function getCountOfIds($link, string $rangeMin, string $rangeMax): int
 {
-  $sql = "SELECT COUNT(id) as count FROM `groups`.`active_ids`";
+  $sql = "SELECT COUNT(id) as count FROM `groups`.`groups` WHERE members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . "";
 
   return get_db_result($link, $sql)[0]['count'];
 }

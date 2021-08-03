@@ -3,5 +3,5 @@ session_start();
 
 $_SESSION = [];
 
-header("Location: /pop/registration.php");
+header("Location: /registration.php");
 exit();
