@@ -20,11 +20,12 @@ $stop_date = isset($_POST['stop_date']) ? $_POST['stop_date'] : '';
 // "порций" групп по 25 в пачке. Используем эти данные
 // для понимания масимального числа в списке пагинации
 if (!isset($_SESSION['max_count']) || $_SESSION['range_min'] != $rangeMin
-  || $_SESSION['range_max'] != $rangeMax || $_SESSION['group_type'] != $groupType) {
+  || $_SESSION['range_max'] != $rangeMax || $_SESSION['group_type'] != $groupType || $_SESSION['search'] != $search) {
   $_SESSION['range_min'] = $rangeMin;
   $_SESSION['range_max'] = $rangeMax;
   $_SESSION['group_type'] = $groupType;
-  $_SESSION['max_count'] = ceil(getCountOfIds($con, $rangeMin, $rangeMax, $groupType) / 25 );
+  $_SESSION['search'] = $search;
+  $_SESSION['max_count'] = ceil(getCountOfIds($con, $search, $rangeMin, $rangeMax, $groupType) / 25 );
 }
 
 // Если нажали кнопку на пагинации "в начало" или "в конец",
@@ -37,13 +38,6 @@ if (!isset($currentCount)) {
   $currentCount = $_SESSION['max_count'];
 }
 
-if (isset($search)) {
-  if ($_SESSION['search'] != $search) {
-    $_SESSION['search'] = $search;
-    $_SESSION['search-max-count'] = ceil(getMaxCountWithSearch($con, $search) / 25 );
-  }
-}
-
 $ids = getPortionIds($con, $currentCount, $search, $rangeMin, $rangeMax, $groupType);
 $ids_arr = $ids;
 
@@ -51,7 +45,8 @@ if (!empty($ids)) {
   $ids_arr = getStats($con, $ids, $start_date, $stop_date, $period);
   $ids_arr = convertStats($ids_arr);
 }
-$max_count = $search ? $_SESSION['search-max-count'] : $_SESSION['max_count'];
+
+$max_count = $_SESSION['max_count'];
 
 $page_content = include_template('main.php', [
   'items' => $ids_arr
