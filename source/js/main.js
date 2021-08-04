@@ -41,6 +41,8 @@ window.addEventListener(`load`, () => {
     filterForm.addEventListener(`change`, () => {
       getItemsInstance.getPortionData(1);
     });
+
+    window.addEventListener(`scroll`, getItemsInstance.onWindowScroll);
   }
 
   if (addFormContainer && buttonRollup) {

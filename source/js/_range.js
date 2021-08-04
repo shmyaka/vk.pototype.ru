@@ -81,6 +81,8 @@ export default class Range {
   }
 
   /**
+   * Обработчик клика по кнопке сброса
+   * Устанавливает значения range в крайние положения min и max
    *
    * @param {Event} e
    */
