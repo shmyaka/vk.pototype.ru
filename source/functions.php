@@ -54,9 +54,9 @@ function getPortionIds($link, int $currentCount, string $search = null, string $
   $fragment = $groupType == "all" ? "" : " `type` = '" . $groupType . "' AND ";
 
   if ($search) {
-    $sql = "SELECT id FROM `groups`.`groups` WHERE " . $fragment . " MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE) LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+    $sql = "SELECT id FROM `groups`.`groups` WHERE " . $fragment .  "members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . " AND MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE) LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
   } else {
-    $sql = "SELECT id FROM `groups`.`groups` WHERE " . $fragment . " members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . " LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
+    $sql = "SELECT id FROM `groups`.`groups` WHERE " . $fragment . "members_count BETWEEN " . $rangeMin . " AND " . $rangeMax . " LIMIT " . 25 . " OFFSET " . 25 * ($currentCount - 1);
   }
 
   $portionIds = get_db_result($link, $sql);
@@ -77,7 +77,7 @@ function getCountOfIds($link, string $rangeMin, string $rangeMax, string $groupT
   return get_db_result($link, $sql)[0]['count'];
 }
 
-function getMaxCountWithSearch($link, string $search)
+function getMaxCountWithSearch($link, string $search, string $rangeMin, string $rangeMax, string $groupType): int
 {
   $sql = "SELECT COUNT(id) as count FROM `groups`.`groups` WHERE MATCH(`name`) AGAINST('" . $search . "' IN BOOLEAN MODE)";
 
