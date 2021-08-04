@@ -25,7 +25,8 @@ if (!isset($_SESSION['max_count']) || $_SESSION['range_min'] != $rangeMin
   $_SESSION['range_max'] = $rangeMax;
   $_SESSION['group_type'] = $groupType;
   $_SESSION['search'] = $search;
-  $_SESSION['max_count'] = ceil(getCountOfIds($con, $search, $rangeMin, $rangeMax, $groupType) / 25 );
+  $_SESSION['total_groups'] = getCountOfIds($con, $search, $rangeMin, $rangeMax, $groupType);
+  $_SESSION['max_count'] = ceil($_SESSION['total_groups'] / 25 );
 }
 
 // Если нажали кнопку на пагинации "в начало" или "в конец",
@@ -48,7 +49,7 @@ if (!empty($ids)) {
 
 $max_count = $_SESSION['max_count'];
 
-$page_content = include_template('main.php', [
+$page_content = include_template('list.php', [
   'items' => $ids_arr
 ]);
 
@@ -66,6 +67,7 @@ $data = [];
 $data['list'] = $page_content;
 $data['pagination'] = $pagination_content;
 $data['max'] = $max_count;
+$data['total'] = number_format($_SESSION['total_groups'], 0, '', ' ');
 
 
 // $sorting = isset($_POST['sorting']) ? trim(strip_tags($_POST['sorting'])) : '';

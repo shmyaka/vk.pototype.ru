@@ -1,7 +1,7 @@
 <?php
 require_once 'helpers.php';
 require_once 'functions.php';
-require_once 'sql-connect.php';
+require_once 'admin-sql-connect.php';
 
 session_start();
 
@@ -13,7 +13,7 @@ if (!$login || !$password) {
   exit();
 }
 
-$user_data = getPasswordFromDB($con, 'observer');
+$user_data = getPasswordFromDB($con, $login);
 $hash = $user_data[0]["password"];
 $user_id = $user_data[0]["id"];
 

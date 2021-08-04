@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import GetItems, {onFormSubmit, startInput, stopInput} from './_get-items';
+import GetItems, {startInput, stopInput} from './_get-items';
 import FormatDate from './_set_date';
 import AddFormRollup from './_add-form-rollup';
 import Pagination from './_pagination';
@@ -22,13 +22,14 @@ const outputMin = document.getElementById(`output_min`);
 const outputMax = document.getElementById(`output_max`);
 const rangeLine = document.querySelector(`.filter__range-line`);
 const filterResetButton = document.querySelector(`.filter__reset-button`);
+const totalValue = document.querySelector(`.filter__total-value`);
 // потом посчитать отдельно
 const MAX_MEMBERS = 11597820;
 
 window.addEventListener(`load`, () => {
   if (form && searchInput) {
     // form.addEventListener(`submit`, onFormSubmit);
-    const getItemsInstance = new GetItems(paginationList, statList, searchInput, filterForm);
+    const getItemsInstance = new GetItems(paginationList, statList, searchInput, filterForm, totalValue);
 
     getItemsInstance.getPortionData();
 

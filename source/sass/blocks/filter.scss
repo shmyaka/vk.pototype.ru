@@ -76,8 +76,6 @@
   }
 
   @media (max-width: $scroll-media-width) {
-
-
     width: 50px;
 
     &--open {
@@ -96,7 +94,20 @@
   }
 }
 
+.filter__total {
+  margin: 0;
+  padding: 10px 24px;
+
+  font-style: italic;
+}
+
+.filter__total-value {
+  color: var(--dark-blue);
+}
+
 .filter__form {
+  position: relative;
+
   width: 100%;
   padding: 10px;
 
@@ -184,26 +195,32 @@
 
 .filter__reset-button {
   @include reset-button;
+
   position: absolute;
   top: 18px;
   left: 115px;
 
   width: 12px;
   height: 12px;
+
   color: var(--tumbs-color);
+
   transition: color 0.3s ease, transform 0.3s ease;
-  will-change: transform; 
+
+  will-change: transform;
 
   &::before,
   &::after {
     content: "";
     position: absolute;
-    width: 15px;
-    height: 2px;
     top: 50%;
     left: 50%;
-    border-radius: 2px;
+
+    width: 15px;
+    height: 2px;
+
     background-color: currentColor;
+    border-radius: 2px;
   }
 
   &::before {
@@ -217,6 +234,7 @@
   &:hover,
   &:focus {
     color: var(--pink);
+
     transform: scale(1.1);
   }
 

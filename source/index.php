@@ -26,7 +26,7 @@ if (!isset($_SESSION['user'])) {
 
   <div class="container">
     <div class="add-form-container add-form-container--close">
-      <button class="add-form-container__button button" type="button" name="add-from-rollup">Парсить</button>
+      <button class="add-form-container__button button" type="button" name="add-from-rollup" onclick="blur()">Парсить</button>
       <div class="add-form-container__wrap">
         <form class="form add-form" action="#" method="POST">
           <legend class="form__legend">Введите данные для парсинга</legend>
@@ -83,9 +83,13 @@ if (!isset($_SESSION['user'])) {
 
       <!-- FILTER -->
       <div class="filter">
+        <p class="filter__total">
+          Всего сообществ:
+          <span class="filter__total-value"></span>
+        </p>
         <form class="filter__form" action="" >
           <fieldset class="filter__range-fieldset filter__fieldset">
-            <button class="filter__reset-button" type="button"></button>
+            <button class="filter__reset-button" type="button" onclick="blur()"></button>
             <label class="label" for="range_min">Подписчики:</label>
             <div class="filter__output-wrap">
               <input class="filter__output" type="number" name="output_min" id="output_min" value="1"></input>

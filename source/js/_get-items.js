@@ -5,49 +5,13 @@ export const stopInput = document.getElementById(`stop_period`);
 
 const area = document.querySelector(`.form__area`);
 
-/**
- * Обработчик события отправления формы
- *
- * @param {Event} e
- */
-export const onFormSubmit = (e) => {
-  e.preventDefault();
-
-  if (!statList) {
-    return;
-  }
-
-  const self = window.location.href;
-  const url = self + '/post.php';
-  const data = new FormData();
-  let groupIds = area.value.trim().split(`,`);
-
-  groupIds = groupIds.map((item) => {
-    return item.trim();
-  });
-
-  for (const x of groupIds) {
-    data.append('id[]', x);
-  }
-  data.append('start_date', startInput.value);
-  data.append('stop_date', stopInput.value);
-
-  fetch(url, {
-    method: `POST`,
-    body: data
-  }).then((responce) => {
-    return responce.text();
-  }).then((data) => {
-    statList.innerHTML = data;
-  });
-};
-
 export default class GetItems {
-  constructor(pagination, statList, searchInput, filterForm) {
+  constructor(pagination, statList, searchInput, filterForm, totalValue) {
     this._list = statList || null;
     this._paginationList = pagination || null;
     this._searchInput = searchInput || null;
     this._filterForm = filterForm || null;
+    this._totalValue = totalValue || null;
     this._lock = false;
     this._pendingData = null;
     this._isinProgress = true;
@@ -107,6 +71,10 @@ export default class GetItems {
         }
 
         this._list.dataset.currentCount = currentCount === `start` ? 1 : currentCount === `end` ? this._max : currentCount;
+      }
+
+      if (this._totalValue) {
+        this._totalValue.textContent = data.total;
       }
 
       if (this._paginationList) {

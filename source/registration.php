@@ -1,7 +1,7 @@
 <?php
 require_once 'helpers.php';
 require_once 'functions.php';
-require_once 'sql-connect.php';
+require_once 'admin-sql-connect.php';
 
 session_start();
 
