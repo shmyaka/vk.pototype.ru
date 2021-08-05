@@ -37,3 +37,18 @@
   grid-column: 2 / span 2;
   justify-self: start;
 }
+
+.table-head__link {
+  transition: color 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+  margin: 16px 0;
+
+  &:hover,
+  &:focus {
+    color: var(--orange);
+  }
+
+  &:active {
+    filter: hue-rotate(-147deg);
+  }
+}
