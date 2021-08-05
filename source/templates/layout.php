@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/style-min.css">
 </head>
 <body>
+  <?= $header ?>
+  
   <div class="container">
     <?= $content ?>
   </div>

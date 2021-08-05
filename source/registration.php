@@ -18,8 +18,8 @@ $layout_content = include_template('layout.php', [
 ]);
 
 
-$user_data = getPasswordFromDB($con, 'observer');
-$hash = $user_data[0]["password"];
+// $user_data = getPasswordFromDB($con, 'observer');
+// $hash = $user_data[0]["password"];
 
 
 // var_dump(password_verify("gfyr1313", $hash));

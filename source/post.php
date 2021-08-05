@@ -70,6 +70,7 @@ $data['max'] = $max_count;
 $data['total'] = number_format($_SESSION['total_groups'], 0, '', ' ');
 
 
+
 // $sorting = isset($_POST['sorting']) ? trim(strip_tags($_POST['sorting'])) : '';
 // $rangeMax = isset($_POST['rangeMax']) ? trim(strip_tags($_POST['rangeMax'])) : '';
 

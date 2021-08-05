@@ -18,7 +18,7 @@ $hash = $user_data[0]["password"];
 $user_id = $user_data[0]["id"];
 
 if (password_verify($password, $hash)) {
-  $_SESSION['user'] = $user_id;
+  $_SESSION['user'] = $login;
   header("Location: /");
   exit();
 } else {
