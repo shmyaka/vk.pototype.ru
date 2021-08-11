@@ -55,9 +55,5 @@
     "last 2 versions",
     "IE 10",
     "Firefox ESR"
-  ],
-  "dependencies": {
-    "natives": "^1.1.6",
-    "node-sass": "^4.12.0"
-  }
+  ]
 }
