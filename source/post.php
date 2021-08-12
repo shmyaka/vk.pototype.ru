@@ -14,6 +14,7 @@ $groupType = isset($_POST['group_type']) ? $_POST['group_type'] : null;
 $period = isset($_POST['period']) ? $_POST['period'] : null;
 $start_date = isset($_POST['start_date']) ? $_POST['start_date'] : '';
 $stop_date = isset($_POST['stop_date']) ? $_POST['stop_date'] : '';
+$category = isset($_POST['category']) ? $_POST['category'] : '';
 
 
 // Если заходим впервый раз, сохраняем в сессии максимальное количество
@@ -68,6 +69,7 @@ $data['list'] = $page_content;
 $data['pagination'] = $pagination_content;
 $data['max'] = $max_count;
 $data['total'] = number_format($_SESSION['total_groups'], 0, '', ' ');
+$data['category'] = $category;
 
 
 

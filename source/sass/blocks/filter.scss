@@ -1,7 +1,10 @@
 .filter {
+  @include scrollbar;
   position: sticky;
   top: 38px;
   right: 0;
+  max-height: calc(100vh - 40px);
+  overflow-y: scroll;
 
   background-color: var(--light);
 
@@ -270,5 +273,31 @@
 
     background-color: var(--pampas);
     border: 2px solid var(--border-color);
+  }
+}
+
+.filter__categories-list {
+  @include reset-list;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.filter__categories-link {
+  margin-bottom: 5px;
+  display: flex;
+  transition: color 0.3s ease;
+
+  &--active {
+    font-weight: 600;
+    color: var(--dark-blue);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--submit-hover-color);
+  }
+
+  &:active {
+    color: var(--submit-active-color);
   }
 }

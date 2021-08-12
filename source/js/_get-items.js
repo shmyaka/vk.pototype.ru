@@ -6,12 +6,13 @@ export const stopInput = document.getElementById(`stop_period`);
 const area = document.querySelector(`.form__area`);
 
 export default class GetItems {
-  constructor(pagination, statList, searchInput, filterForm, totalValue) {
+  constructor(pagination, statList, searchInput, filterForm, totalValue, categoriesList) {
     this._list = statList || null;
     this._paginationList = pagination || null;
     this._searchInput = searchInput || null;
     this._filterForm = filterForm || null;
     this._totalValue = totalValue || null;
+    this._categoriesList = categoriesList || null;
     this._lock = false;
     this._pendingData = null;
     this._isinProgress = true;
@@ -107,11 +108,13 @@ export default class GetItems {
     }
 
     const data = new FormData(this._filterForm);
+    const category = this._categoriesList.querySelector(`.filter__categories-link--active`).dataset.value;
 
     // потом нужно добавить подтягивание самой свежей даты
     data.append('currentCount', currentCount);
     data.append('start_date', data.get(`period`) === `week` ? '2021-07-12' : '2021-06-21');
     data.append('stop_date', '2021-07-19');
+    data.append('category', category);
 
     if (this._searchInput.dataset.value) {
       data.append('search', this._searchInput.dataset.value);

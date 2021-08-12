@@ -1,10 +1,11 @@
-import '@babel/polyfill';
+// import '@babel/polyfill';
 import GetItems, {startInput, stopInput} from './_get-items';
 import FormatDate from './_set_date';
 import AddFormRollup from './_add-form-rollup';
 import Pagination from './_pagination';
 import Search from './_search';
 import Range from './_range';
+import Categories from './_categories';
 
 const form = document.querySelector(`.add-form`);
 const statList = document.querySelector(`.stat-list`);
@@ -23,13 +24,14 @@ const outputMax = document.getElementById(`output_max`);
 const rangeLine = document.querySelector(`.filter__range-line`);
 const filterResetButton = document.querySelector(`.filter__reset-button`);
 const totalValue = document.querySelector(`.filter__total-value`);
+const filterCategoriesList = document.querySelector(`.filter__categories-list`);
 // потом посчитать отдельно
 const MAX_MEMBERS = 11597820;
 
 window.addEventListener(`load`, () => {
   if (form && searchInput) {
     // form.addEventListener(`submit`, onFormSubmit);
-    const getItemsInstance = new GetItems(paginationList, statList, searchInput, filterForm, totalValue);
+    const getItemsInstance = new GetItems(paginationList, statList, searchInput, filterForm, totalValue, filterCategoriesList);
 
     getItemsInstance.getPortionData();
 
@@ -42,6 +44,8 @@ window.addEventListener(`load`, () => {
     filterForm.addEventListener(`change`, () => {
       getItemsInstance.getPortionData(1);
     });
+
+    const categories = new Categories(filterCategoriesList, getItemsInstance).init();
 
     window.addEventListener(`scroll`, getItemsInstance.onWindowScroll);
   }

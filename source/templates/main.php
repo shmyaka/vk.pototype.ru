@@ -90,7 +90,7 @@
         </label>
       </fieldset>
       <fieldset class="filter__fieldset">
-        <label class="label filter__label" for="period-week">Период:</label>
+        <label class="label" for="period-week">Период:</label>
         <label class="label filter__label" for="period-week">
           <input type="radio" name="period" id="period-week" value="week" checked>
           Неделя
@@ -99,6 +99,119 @@
           <input type="radio" name="period" id="period-month" value="month">
           Месяц
         </label>
+      </fieldset>
+      <fieldset  class="filter__fieldset">
+        <p class="label">Категория:</p>
+        <ul class="filter__categories-list">
+          <li>
+            <a class="filter__categories-link filter__categories-link--active" data-value="all">Все категории</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="1">18+</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="5">Авто/Мото</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="4">Астрология/Психология</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="7">Бизнес/Финансы</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="34">Видео/Кино</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="24">Другое</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="14">Еда</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="3">Животные</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="19">ИТ</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="16">Игры</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="6">Красота/Здорвье</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="11">Культура/Искусство</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="20">Литература</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="33">Магазины/Товары</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="22">Музыка</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="29">Наука</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="13">Оборудование/Производство</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="12">Образование</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="9">Общение</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="31">Общество</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="2">Объявления</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="8">Одежда</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="23">Организации</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="28">Отдых</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="26">Отношения</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="25">Политика</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="34">Путешествия</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="15">Развлечения</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="27">Религия</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="21">СМИ</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="32">Спорт</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="10">Творчество</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="30">Услуги</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="17">Хобби</a>
+          </li>
+          <li>
+            <a class="filter__categories-link" data-value="18">Юмор</a>
+          </li>
+        </ul>
       </fieldset>
     </form>
     <button class="filter__toggle-button" type="button" name="filter-toggle-button">></button>
