@@ -42,7 +42,7 @@ if (!isset($currentCount)) {
   $currentCount = $_SESSION['max_count'];
 }
 
-$ids = getPortionIds($con, $currentCount, $search, $rangeMin, $rangeMax, $groupType);
+$ids = getPortionIds($con, $currentCount, $search, $rangeMin, $rangeMax, $groupType, $category);
 $ids_arr = $ids;
 
 if (!empty($ids)) {

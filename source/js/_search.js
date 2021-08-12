@@ -41,7 +41,7 @@ export default class Search {
     }
 
     text = text.split(` `);
-    text = text.map((item) => `*${item.toLowerCase().trim()}*`);
+    text = text.map((item) => `*${item.toLowerCase().trim().replace(`+`, ``)}*`);
     text = text.join(` `);
 
     this._input.dataset.value = text;

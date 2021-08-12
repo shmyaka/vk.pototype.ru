@@ -22,7 +22,7 @@ export default class Categories {
 
     e.target.closest(`.filter__categories-link`).classList.add(`filter__categories-link--active`);
 
-    this._getItemsInstance.getPortionData();
+    this._getItemsInstance.getPortionData(1);
   }
 
   init() {

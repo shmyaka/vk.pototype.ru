@@ -119,7 +119,7 @@
             <a class="filter__categories-link" data-value="7">Бизнес/Финансы</a>
           </li>
           <li>
-            <a class="filter__categories-link" data-value="34">Видео/Кино</a>
+            <a class="filter__categories-link" data-value="35">Видео/Кино</a>
           </li>
           <li>
             <a class="filter__categories-link" data-value="24">Другое</a>
