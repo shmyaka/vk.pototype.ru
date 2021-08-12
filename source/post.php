@@ -21,12 +21,14 @@ $category = isset($_POST['category']) ? $_POST['category'] : '';
 // "порций" групп по 25 в пачке. Используем эти данные
 // для понимания масимального числа в списке пагинации
 if (!isset($_SESSION['max_count']) || $_SESSION['range_min'] != $rangeMin
-  || $_SESSION['range_max'] != $rangeMax || $_SESSION['group_type'] != $groupType || $_SESSION['search'] != $search) {
+  || $_SESSION['range_max'] != $rangeMax || $_SESSION['group_type'] != $groupType
+  || $_SESSION['search'] != $search || $_SESSION['category'] != $category) {
   $_SESSION['range_min'] = $rangeMin;
   $_SESSION['range_max'] = $rangeMax;
   $_SESSION['group_type'] = $groupType;
   $_SESSION['search'] = $search;
-  $_SESSION['total_groups'] = getCountOfIds($con, $search, $rangeMin, $rangeMax, $groupType);
+  $_SESSION['category'] != $category;
+  $_SESSION['total_groups'] = getCountOfIds($con, $search, $rangeMin, $rangeMax, $groupType, $category);
   $_SESSION['max_count'] = ceil($_SESSION['total_groups'] / 25 );
 }
 
