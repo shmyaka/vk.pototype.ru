@@ -1,4 +1,4 @@
-// import '@babel/polyfill';
+import '@babel/polyfill';
 import GetItems, {startInput, stopInput} from './_get-items';
 import FormatDate from './_set_date';
 import AddFormRollup from './_add-form-rollup';
@@ -25,6 +25,10 @@ const rangeLine = document.querySelector(`.filter__range-line`);
 const filterResetButton = document.querySelector(`.filter__reset-button`);
 const totalValue = document.querySelector(`.filter__total-value`);
 const filterCategoriesList = document.querySelector(`.filter__categories-list`);
+const sortLinks = document.querySelectorAll(`.table-head__link[data-sort]`);
+const sortNameInput = document.getElementById(`sort_name`);
+const sortDirectionInput = document.getElementById(`sort_direction`);
+
 // потом посчитать отдельно
 const MAX_MEMBERS = 11597820;
 
@@ -48,6 +52,27 @@ window.addEventListener(`load`, () => {
     const categories = new Categories(filterCategoriesList, getItemsInstance).init();
 
     window.addEventListener(`scroll`, getItemsInstance.onWindowScroll);
+
+    if (sortLinks) {
+      Array.from(sortLinks).forEach((sortLink, i, arr) => {
+        sortLink.addEventListener(`click`, (e) => {
+          e.preventDefault();
+
+          arr.forEach((item) => {
+            if (e.target === item) {
+              return;
+            }
+            item.dataset.direction = ``;
+          });
+
+          e.target.dataset.direction = e.target.dataset.direction !== `up` ? `up` : `down`;
+          sortNameInput.value = e.target.dataset.sort;
+          sortDirectionInput.value = e.target.dataset.direction;
+
+          getItemsInstance.getPortionData(1);
+        });
+      });
+    }
   }
 
   if (addFormContainer && buttonRollup) {

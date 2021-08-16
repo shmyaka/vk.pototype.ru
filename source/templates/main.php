@@ -19,10 +19,10 @@
 </div>
 <div class="table-head">
   <div class="table-head__content">
-    <a class="table-head__link table-head__name">Название</a>
-    <a class="table-head__link table-head__members-count">Подписчики</a>
-    <a class="table-head__link table-head__coverage">Охват</a>
-    <a class="table-head__link table-head__visitors">Посетители</a>
+    <a class="table-head__link table-head__name" data-sort="name">Название</a>
+    <a class="table-head__link" data-sort="members">Подписчики</a>
+    <a class="table-head__link" data-sort="coverage">Охват</a>
+    <a class="table-head__link" data-sort="visitors">Посетители</a>
     <a class="table-head__link table-head__growth">Прирост</a>
   </div>
   <div class="search">
@@ -60,6 +60,8 @@
       <span class="filter__total-value"></span>
     </p>
     <form class="filter__form" action="" >
+      <input class="visually-hidden" type="text" name="sort_name" id="sort_name">
+      <input class="visually-hidden" type="text" name="sort_direction" id="sort_direction">
       <fieldset class="filter__range-fieldset filter__fieldset">
         <button class="filter__reset-button" type="button" onclick="blur()"></button>
         <label class="label" for="range_min">Подписчики:</label>
